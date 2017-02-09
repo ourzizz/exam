@@ -21,10 +21,8 @@ SetExamPage::SetExamPage(QWidget *parent)
         serverCombo->addItem(record.value("ex_name").toString());
     }
 
-    QTableView *view = new QTableView;
+    view = new QTableView;
     view->setModel(model);
-    //view->setEditTriggers(QAbstractItemView::EditTrigger());
-    //view->show();
 
     QPushButton *okButton = new QPushButton(tr("提交"),this);
     connect(okButton, SIGNAL(clicked()), this, SLOT(SubmitChange()));
@@ -35,10 +33,26 @@ SetExamPage::SetExamPage(QWidget *parent)
     selectExam->addWidget(selectExamButton);
     selectExam->addStretch(1);
     /* test layout*/
+
+    /* table view layout*/
+    QPushButton *newExamButton = new QPushButton(tr("新建考试"),this);
+    connect(newExamButton, SIGNAL(clicked()), this, SLOT(NewExam()));
+    QPushButton *deleteExamButton = new QPushButton(tr("删除考试"),this);
+    connect(deleteExamButton, SIGNAL(clicked()), this, SLOT(RemoveExam()));
+    QVBoxLayout *ExamButtonsLayout = new QVBoxLayout;
+    ExamButtonsLayout->addWidget(newExamButton);
+    ExamButtonsLayout->addWidget(deleteExamButton);
+    ExamButtonsLayout->addStretch(1);
+    QHBoxLayout *setExamLayout = new QHBoxLayout;
+    setExamLayout->addWidget(view);
+    setExamLayout->addStretch();
+    setExamLayout->addLayout(ExamButtonsLayout);
+    /* table view layout*/
+
     QVBoxLayout *serverLayout = new QVBoxLayout;
     serverLayout->addWidget(serverLabel);
     serverLayout->addLayout(selectExam);
-    serverLayout->addWidget(view);
+    serverLayout->addLayout(setExamLayout);
     serverLayout->addWidget(okButton);
 
     QVBoxLayout *configLayout = new QVBoxLayout;
@@ -65,4 +79,27 @@ void SetExamPage::SubmitChange()
                              model->lastError().text());
         model->revertAll();//撤销修改
     }
+}
+void SetExamPage::NewExam()
+{
+    int rowNum = model->rowCount();
+    model->insertRow(rowNum);
+    //model->setData(model->index(rowNum,0));
+
+}
+void SetExamPage::RemoveExam()
+{
+    int curRow = view->currentIndex().row();
+    model->removeRow(curRow);
+    int ret = QMessageBox::warning(this, tr("要删除吗"),
+                                   tr("The document has been modified.\n"
+                                      "Do you want to save your changes?"),
+                                   QMessageBox::Save | QMessageBox::Discard
+                                   | QMessageBox::Cancel,
+                                   QMessageBox::Save);
+    if(ret == QMessageBox::Cancel)
+    {
+        model->revertAll(); //如果不删除，则撤销
+    }
+    else model->submitAll(); //否则提交，在数据库中删除该行
 }

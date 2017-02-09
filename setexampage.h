@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QtSql>
+#include <QTableView>
 
 class SetExamPage : public QWidget
 {
@@ -13,8 +14,12 @@ public:
 
 public slots:
     void SubmitChange();
+    void NewExam();
+    void RemoveExam();
+
 private:
     QSqlTableModel *model;
+    QTableView *view;
 };
 
 #endif
