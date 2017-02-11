@@ -27,3 +27,15 @@
 *.exe
 *.out
 *.app
+
+#vim
+*.swp
+
+#img
+*.png
+
+#Makefile
+Makefile.*
+/debug
+/images
+/release

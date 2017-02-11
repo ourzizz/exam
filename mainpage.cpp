@@ -42,6 +42,7 @@ MainPage::MainPage()
     setLayout(mainLayout);
 
     setWindowTitle(tr("欢迎使用"));/*}}}*/
+    setWindowIcon(QIcon(":/images/icon.png")); //设置窗体标题上的图标
 }
 
 void MainPage::createIcons()
@@ -53,10 +54,22 @@ void MainPage::createIcons()
     setExamPageButton->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
     QListWidgetItem *SetExamKemuPage = new QListWidgetItem(contentsWidget);
-    SetExamKemuPage->setIcon(QIcon(":/images/update.png"));
-    SetExamKemuPage->setText(tr("Update"));
+    SetExamKemuPage->setIcon(QIcon(":/images/kemu.png"));
+    SetExamKemuPage->setText(tr("考试科目管理"));
     SetExamKemuPage->setTextAlignment(Qt::AlignHCenter);
     SetExamKemuPage->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+
+    QListWidgetItem *KaoshengBaoMingPage = new QListWidgetItem(contentsWidget);
+    KaoshengBaoMingPage->setIcon(QIcon(":/images/kaosheng.png"));
+    KaoshengBaoMingPage->setText(tr("考生报名管理"));
+    KaoshengBaoMingPage->setTextAlignment(Qt::AlignHCenter);
+    KaoshengBaoMingPage->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
+     
+    QListWidgetItem *KaoChangGuanLiPage = new QListWidgetItem(contentsWidget);
+    KaoChangGuanLiPage->setIcon(QIcon(":/images/kaodian.png"));
+    KaoChangGuanLiPage->setText(tr("考点管理"));
+    KaoChangGuanLiPage->setTextAlignment(Qt::AlignHCenter);
+    KaoChangGuanLiPage->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
 
     connect(contentsWidget, &QListWidget::currentItemChanged, this, &MainPage::changePage);
 }
@@ -68,3 +81,20 @@ void MainPage::changePage(QListWidgetItem *current, QListWidgetItem *previous)
 
     pagesWidget->setCurrentIndex(contentsWidget->row(current));
 }
+
+//void MainPage::createStatusBar()
+//{
+    //locationLabel = new QLable("W999");
+    //locationLabel->setAlignment(Qt::AlighHCenter);
+    //locationLabel->setMinimumSize(locationLabel->sizeHint());
+
+    //formulaLabel = new QLabel;
+    //formulaLabel->setIndent(3);
+
+    //statusBar()->addWidget(locationLabel);
+    //statusBar()->addWidget(formulaLabel,1);
+    //connect(spreadsheet,SIGNAL(currentCellChanged(int,int,int,int)),
+            //this,SLOT(updateStatusBar()));
+    //connect(spreadsheet,SIGNAL(modified()),this,SLOT(spreadsheetModified()));
+    //updateStatusBar();
+//} 

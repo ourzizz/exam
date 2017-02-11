@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QWidget>
+#include <QtWidgets/QStatusBar>
 
 QT_BEGIN_NAMESPACE
 class QListWidget;
@@ -18,11 +19,14 @@ public:
 
 public slots:
     void changePage(QListWidgetItem *current, QListWidgetItem *previous);
+  //  void updateStatubar();
 
 private:
     void createIcons();
+    //void createStatubar();
 
     QListWidget *contentsWidget;
+    //QStatusBar *statusBar;
     QStackedWidget *pagesWidget;
 };
 

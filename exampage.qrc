@@ -1,7 +1,12 @@
 <!DOCTYPE RCC><RCC version="1.0">
 <qresource>
    <file>images/config.png</file>
+   <file>images/kaosheng.png</file>
+   <file>images/kaodian.png</file>
+   <file>images/icon.png</file>
    <file>images/query.png</file>
    <file>images/update.png</file>
+   <file>images/kemu.png</file>
 </qresource>
 </RCC>
+

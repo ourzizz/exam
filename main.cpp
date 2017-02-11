@@ -29,5 +29,5 @@ int main(int argc, char *argv[])
     app.setApplicationDisplayName("毕节人事考试系统");
     MainPage mainpage;
     mainpage.showMaximized();
-     return app.exec();
+    return app.exec();
 }
