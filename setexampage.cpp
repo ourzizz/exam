@@ -3,9 +3,10 @@
 #include <QMessageBox>
 #include "setexampage.h"
 
-SetExamPage::SetExamPage(QWidget *parent)
+SetExamPage::SetExamPage(ExamStatus *examstatus,QWidget *parent)
     : QWidget(parent)
 {
+    this->examstatus = examstatus;
     configGroup = new QGroupBox(tr("考试设置"));
     serverLabel = new QLabel(tr("请选择考试:"));
     serverCombo = new QComboBox;
@@ -118,4 +119,5 @@ void SetExamPage::InitPage()
 }
 void SetExamPage::SelectExamForGlobal()
 {
+    examstatus->SelectExam(serverCombo->currentText());
 }

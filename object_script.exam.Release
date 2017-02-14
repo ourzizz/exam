@@ -1,0 +1,12 @@
+INPUT(
+./release\main.o
+./release\mainpage.o
+./release\setexamkemupage.o
+./release\setexampage.o
+./release\examstatus.o
+./release\setkemu.o
+./release\qrc_exampage.o
+./release\moc_mainpage.o
+./release\moc_setexampage.o
+./release\moc_setkemu.o
+);

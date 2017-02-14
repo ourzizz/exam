@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QtWidgets/QStatusBar>
+#include "ExamStatus.h"
 
 QT_BEGIN_NAMESPACE
 class QListWidget;
@@ -28,6 +29,7 @@ private:
     QListWidget *contentsWidget;
     //QStatusBar *statusBar;
     QStackedWidget *pagesWidget;
+    ExamStatus *examstatus;
 };
 
 #endif

@@ -6,13 +6,14 @@
 #include <QtWidgets>
 #include <QtSql>
 #include <QTableView>
+#include "examstatus.h"
 
 class SetExamPage : public QWidget
 {
     Q_OBJECT
 
 public:
-    SetExamPage(QWidget *parent=0);
+    SetExamPage(ExamStatus *examstatus,QWidget *parent=0);
     void InitPage();
 
 public slots:
@@ -22,6 +23,7 @@ public slots:
     void SelectExamForGlobal();
 
 private:
+    ExamStatus *examstatus;
     QSqlTableModel *model;
     QTableView *view;
     QComboBox *serverCombo;

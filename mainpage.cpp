@@ -5,6 +5,7 @@
 
 MainPage::MainPage()
 {
+    examstatus = new ExamStatus;
     contentsWidget = new QListWidget;
     contentsWidget->setViewMode(QListView::IconMode);
     contentsWidget->setIconSize(QSize(86, 64));
@@ -12,9 +13,9 @@ MainPage::MainPage()
     contentsWidget->setMaximumWidth(128);
     contentsWidget->setMaximumHeight(3000);
     contentsWidget->setSpacing(12);
-    
+
     pagesWidget = new QStackedWidget;
-    pagesWidget->addWidget(new SetExamPage);
+    pagesWidget->addWidget(new SetExamPage(examstatus));
     pagesWidget->addWidget(new SetExamKemuPage);
     //pagesWidget->addWidget(new UpdatePage);
     //pagesWidget->addWidget(new QueryPage);
@@ -64,7 +65,7 @@ void MainPage::createIcons()
     KaoshengBaoMingPage->setText(tr("考生报名管理"));
     KaoshengBaoMingPage->setTextAlignment(Qt::AlignHCenter);
     KaoshengBaoMingPage->setFlags(Qt::ItemIsSelectable | Qt::ItemIsEnabled);
-     
+
     QListWidgetItem *KaoChangGuanLiPage = new QListWidgetItem(contentsWidget);
     KaoChangGuanLiPage->setIcon(QIcon(":/images/kaodian.png"));
     KaoChangGuanLiPage->setText(tr("考点管理"));
@@ -97,4 +98,4 @@ void MainPage::changePage(QListWidgetItem *current, QListWidgetItem *previous)
             //this,SLOT(updateStatusBar()));
     //connect(spreadsheet,SIGNAL(modified()),this,SLOT(spreadsheetModified()));
     //updateStatusBar();
-//} 
+//}

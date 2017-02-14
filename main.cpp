@@ -1,18 +1,17 @@
 #include <QApplication>
 #include <QtSql>
 #include <QMessageBox>
-
 #include "mainpage.h"
 
 bool connectiondatabes()  
 {  
     QSqlDatabase db = QSqlDatabase::addDatabase("QMYSQL");  
-    //db.setHostName("192.168.1.107");
-    db.setHostName("www.alemao.cn");
+    //db.setHostName("www.alemao.cn");
+    //db.setPort(53183);
+    db.setHostName("192.168.1.107");
     db.setDatabaseName("exam");
     db.setUserName("root");  
     db.setPassword("123123");  
-    db.setPort(53183);
     if (!db.open()) {
         QMessageBox::warning(0, QObject::tr("Database Error"),
                              db.lastError().text());

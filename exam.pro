@@ -8,6 +8,13 @@ TARGET = exam
 INCLUDEPATH += .
 
 # Input
-HEADERS += mainpage.h setexamkemupage.h setexampage.h
-SOURCES += main.cpp mainpage.cpp setexamkemupage.cpp setexampage.cpp
+HEADERS += mainpage.h setexamkemupage.h setexampage.h \
+    examstatus.h \
+    setkemu.h
+SOURCES += main.cpp mainpage.cpp setexamkemupage.cpp setexampage.cpp \
+    examstatus.cpp \
+    setkemu.cpp
 RESOURCES += exampage.qrc
+
+FORMS += \
+    setkemu.ui

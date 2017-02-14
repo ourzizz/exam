@@ -1,0 +1,12 @@
+INPUT(
+./debug\main.o
+./debug\mainpage.o
+./debug\setexamkemupage.o
+./debug\setexampage.o
+./debug\examstatus.o
+./debug\setkemu.o
+./debug\qrc_exampage.o
+./debug\moc_mainpage.o
+./debug\moc_setexampage.o
+./debug\moc_setkemu.o
+);
