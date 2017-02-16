@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QWidget>
+#include <QLabel>
 #include <QtWidgets/QStatusBar>
 #include "ExamStatus.h"
 
@@ -20,16 +21,20 @@ public:
 
 public slots:
     void changePage(QListWidgetItem *current, QListWidgetItem *previous);
-  //  void updateStatubar();
+    void updateStatubar();
 
 private:
     void createIcons();
-    //void createStatubar();
+    void CreateStatusbar();
 
     QListWidget *contentsWidget;
-    //QStatusBar *statusBar;
+    QStatusBar *statusBar;
     QStackedWidget *pagesWidget;
     ExamStatus *examstatus;
+    QLabel *bartitle;
+    QLabel *examnameLabel;
+    QLabel *examkaochangLabel;
 };
+
 
 #endif

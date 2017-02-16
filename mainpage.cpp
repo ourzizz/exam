@@ -35,7 +35,11 @@ MainPage::MainPage()
     buttonsLayout->addStretch(1);
     buttonsLayout->addWidget(closeButton);
 
+    statusBar = new QStatusBar;
+    CreateStatusbar();
+
     QVBoxLayout *mainLayout = new QVBoxLayout;
+    mainLayout->addWidget(statusBar);
     mainLayout->addLayout(horizontalLayout);
     //mainLayout->addStretch(1);
     mainLayout->addSpacing(12);
@@ -77,25 +81,35 @@ void MainPage::createIcons()
 
 void MainPage::changePage(QListWidgetItem *current, QListWidgetItem *previous)
 {
+    //updateStatubar();
     if (!current)
         current = previous;
 
     pagesWidget->setCurrentIndex(contentsWidget->row(current));
 }
+void MainPage::CreateStatusbar()
+{
+    bartitle = new QLabel("状态导航");
+    examnameLabel = new QLabel("目前没有选择考试");
+    //examname->setAlignment(Qt::AlighHCenter);
+    //examkaochangLabel = new QLabel;
+    bartitle->setMinimumSize(examnameLabel->sizeHint());
+    examnameLabel->setIndent(3);
 
-//void MainPage::createStatusBar()
-//{
-    //locationLabel = new QLable("W999");
-    //locationLabel->setAlignment(Qt::AlighHCenter);
-    //locationLabel->setMinimumSize(locationLabel->sizeHint());
-
-    //formulaLabel = new QLabel;
-    //formulaLabel->setIndent(3);
-
-    //statusBar()->addWidget(locationLabel);
-    //statusBar()->addWidget(formulaLabel,1);
+    statusBar->addWidget(bartitle);
+    statusBar->addWidget(examnameLabel);
+    //statusBar->addWidget(examkaochangLabel,1);
+    connect(contentsWidget, &QListWidget::currentItemChanged, this, &MainPage::updateStatubar);
     //connect(spreadsheet,SIGNAL(currentCellChanged(int,int,int,int)),
             //this,SLOT(updateStatusBar()));
     //connect(spreadsheet,SIGNAL(modified()),this,SLOT(spreadsheetModified()));
     //updateStatusBar();
-//}
+}
+void MainPage::updateStatubar()
+{
+    if(examstatus->GetExamName() != "")
+    {
+        examnameLabel->setText(examstatus->GetExamName());
+    }
+    //examnameLabel->setText("Helloworld");
+}
